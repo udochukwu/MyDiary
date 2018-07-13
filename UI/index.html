@@ -15,12 +15,45 @@
         <!-- My Custom CSS -->
         <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/constants.css">
-        <link rel="stylesheet" href="css/modal.css">
+        <link rel="stylesheet" href="css/modals.css">
     
 
         <title>My Diary</title>
     </head>
     <body>
+        <!-- Register Modal -->
+      <div id="registerModal" class="my_modal">
+            <!-- Modal content -->
+            <div class="my_modal_content">
+                <div class="modal-header u-py-2 u-px-3">
+                    <span class="cls" id="registerClsBtn">&times;</span>
+                    <p style="font-size:17px; font-weight:bold;">Sign Up</p>
+                </div>
+                <div class="modal-body ">
+                  <div class="">
+                      <form>
+                          <label for="uname"><b>Email</b></label>
+                          <input type="email" placeholder="Enter Email" name="email" required>
+                    
+                          <label for="psw"><b>Password</b></label>
+                          <input type="password" placeholder="Enter Password" name="passworld" required> 
+
+                          <label for="psw"><b>Confirm Password</b></label>
+                          <input type="password" placeholder="Re-Enter Password" name="confirm_password" required>
+                          <button  id="modalLoginBtn" type="submit"   value="login" ><h4>Register</h4></button> 
+                          <div>
+                              <label>
+                                  <input type="checkbox" checked="checked" name="remember">I agree to the </label><a  style="font-size:13px; color:#1082c9;" href="#">Terms of Service</a>
+  
+                          </div>
+  
+                      </form>
+                  </div>
+                </div>
+  
+            </div>
+        </div>
+
         <nav class="row u-nav-1">
             <div class="logo-div">
                 <h4><a href="#">My Diary</a></h4>

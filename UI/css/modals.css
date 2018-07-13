@@ -37,6 +37,10 @@
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+.my_modal a{
+	font-size:13px; 
+	color:#F4511E;
+}
 .cls {
 	color: #fff;
 	float: right;

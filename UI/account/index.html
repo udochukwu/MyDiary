@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1,user-scalable=0">        
+      
+        <!--Google Fonts-->
+        <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Atomic Age' rel='stylesheet'>
+        
+        <!-- Font Awesome-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">        
+
+        <!-- My Custom CSS -->
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="../css/constants.css">
+        <title>My Diary</title>
+
+
+        <nav class="side-bar-nav" id="mySidebar">
+                <div class="bg-light p-5">
+                    <span id="navClsBtn" >&times;</span>            
+                </div>
+                <ul>
+                    <li><a href="#"><span class="u-mx-3"><i class="fas fa-book"></i></span>Entries</a></li>
+                    <li><a href="#"><span class="u-mx-3"><i class="fas fa-pencil-alt"></i></span>Write</a></li>
+                    <li><a href="#"><span class="u-mx-3"><i class="far fa-bell"></i></span>Notifications</a></li>                    
+                    <li><a href="#"><span class="u-mx-3"><i class="fas fa-cog"></i></span>Account Settings</a></li>
+                    <li><a href="#"><span class="u-mx-3"><i class="fas fa-hands-helping"></i></span>Help & FAQs</a></li>                    
+                    <li><a href="../index.html"><span class="u-mx-3"><i class="fas fa-sign-out-alt"></i></span>Logout</a></li>                    
+                </ul> 
+        </nav>
+        <nav class="horizontal-nav">
+            <ul>
+                <li><a href="#">My Diary</a></li>
+                <span id="laptop-display">
+                    <li style="float:right" class="dropdown u-mr-3 u-ml-5">
+                        <a class="active" href="javascript:void(0)">Nelson <span><i class="u-ml-1 fas fa-sort-down"></i></span></a>
+                        <div class="dropdown-content text-dark text-left">
+                            <a href="#"><span class="u-mx-3"><i class="fas fa-cog"></i></span>Account Settings </a>
+                            <a href="#"><span class="u-mx-3"><i class="fas fa-hands-helping"></i></span>Help & FAQs</a>                                
+                            <a href="../index.html"><span class="u-mx-3"><i class="fas fa-sign-out-alt"></i></span>Logout</a>
+                        </div>
+                    </li>
+                    <li  class="u-mr-5" style="float:right"><a href="#"><span class="u-mx-3"><i class="fas fa-plus-circle"></i></span>New Entry</a></li>                    
+                    <li  style="float:right"><a href="#"><span class="u-mx-3"><i class="fas fa-list-ul"></i></span>View All Entries</a></li>  
+                </span>
+                    <span id="mobile-display">
+                    <li  id="bars"style="float:right"><a href="#"><span class="u-mx-3"><i class="fas fa-bars"></i></span></a></li>  
+                </span>                   
+            </ul> 
+        </nav>
+        <section class="row u-py-5">
+            <div class="summary bg-light text-center u-py-5">
+                <h1 class="">Nelson's Diary</h1>
+                <img src="diary.png" class="u-mb-2">
+                <h2>Entries: <span class="text-success">25</span></h2>
+                <!-- <hr> -->
+                <div class="row text-center">
+                    <div class="col-30"><a class="text-dark" href="#"><span class="u-mx-3 "><i class="fas fa-plus-circle"></i></span><span class="sm-hide">New Entry</span></a></div>
+                    <div class="col-30"><a class="text-dark" href="#"><span class="u-mx-3"><i class="fas fa-list-ul"></i></span><span class="sm-hide">View All Entries</span></a></div>
+                    <div class="col-30"><a class="text-dark" href="#"><span class="u-mx-3"><i class="far fa-bell"></i></span><span class="sm-hide">Notifications</span></a></div>
+                </div>
+            </div>
+        </section>
+    </head>
+    <body>
+
+      <!-- My Javascript -->
+      <script src="js/index.js"></script>
+    </body>
+</html>

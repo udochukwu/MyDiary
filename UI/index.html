@@ -15,21 +15,94 @@
         <!-- My Custom CSS -->
         <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/constants.css">
-        <link rel="stylesheet" href="css/modal.css">
+        <link rel="stylesheet" href="css/modals.css">
     
 
         <title>My Diary</title>
     </head>
     <body>
-        <nav class="row u-nav-1">
+        <!-- Register Modal -->
+        <div id="registerModal" class="my_modal">
+            <!-- Modal content -->
+            <div class="my_modal_content">
+                <div class="modal-body ">
+                        <span class="cls" id="registerClsBtn">&times;</span>                    
+                  <div class="">
+                      <form>
+                          <label for="uname"><b>Email</b></label>
+                          <input type="email" placeholder="Enter Email" name="email" required>
+                    
+                          <label for="psw"><b>Password</b></label>
+                          <input type="password" placeholder="Enter Password" name="passworld" required> 
+
+                          <label for="psw"><b>Confirm Password</b></label>
+                          <input type="password" placeholder="Re-Enter Password" name="confirm_password" required>
+                          <button  id="modalLoginBtn" type="submit"   value="login" ><h4>Register</h4></button> 
+                          <div>
+                              <label>
+                                  <input type="checkbox" checked="checked" name="remember">I agree to the </label><a href="#">Terms of Service</a>
+  
+                          </div>
+  
+                      </form>
+                  </div>
+                </div>
+  
+            </div>
+        </div>
+        <div id="loginModal" class="my_modal">
+            <!-- Modal content -->
+            <div class="my_modal_content">
+                <div class="modal-body ">
+                    <span class="cls" id="loginClsBtn">&times;</span>                    
+                    <div class="">
+                        <form  action="account/index.html">
+                            <label for="uname"><b>Username</b></label>
+                            <input type="text" placeholder="Enter Username" name="uname" required>
+                    
+                            <label for="psw"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="psw" required> 
+                            <button  id="modalLoginBtn" type="submit"   value="login" ><h4>Login</h4></button> 
+                            <div>
+                                <div class="" style="float:right;" >
+                                    <span ><a href="#">Forgot Password?</a></span>
+                                </div>
+                                <label>
+                                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                                </label>
+    
+                            </div>
+    
+                        </form>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+
+
+        <nav class="row">
             <div class="logo-div">
                 <h4><a href="#">My Diary</a></h4>
             </div>
             <div class="signup-signin-div">
-                <h4><a id="" href="#">Sign Up</a><span class="u-mx-3">|</span><a id="loginBtn" href="#">Login</a></h4>
+                <h4><a id="registerBtn" href="#">Sign Up</a><span class="u-mx-3 text-white">|</span><a id="loginBtn" href="#">Login</a></h4>
             </div>
         </nav>
-
+        <section class="section-1">
+            <div class="row">
+                <div class="home-texts">
+                    <h1>Title Here Title Here</h1>
+                    <p>Pen down your thoughts and feelings! What more? It's free!</p>
+                    <a href="#" id="bigRegisterBtn"><span>Get Started</span></a>
+                </div>
+            </div>
+        </section>
+        <footer class="row">
+            <div class="text-center">
+                <p >Copyright © 2018 My Diary</p>
+            </div>
+        </footer>
       <!-- My Javascript -->
       <script src="js/index.js"></script>
     </body>

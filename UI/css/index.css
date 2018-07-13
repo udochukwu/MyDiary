@@ -33,6 +33,61 @@ nav a {
      color: inherit; 
      text-decoration:none;
 } 
+.home-texts{
+    flex: 70%;
+    max-width: 70%;
+    text-align:center;
+}
+.home-texts h1{
+	font-size:40px;
+    font-family: 'Aldrich';
+    color:#fff;
+    text-align:center;
+}
+.home-texts p{
+	font-size:30px;
+	font-family: 'Abel';	
+	color:#151513;
+	background-color: #f8f9fa;
+	border-radius: 2px;
+	padding:5px 10px;
+}
+.home-texts a{
+	display: inline-block;
+	border-radius: 50px;
+	background-color: #f4511e;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 28px;
+	padding: 20px;
+	width: 50%;
+	transition: all 0.5s;
+	cursor: pointer;
+    margin: 5px;
+    text-align:center;
+}
+.home-texts a span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+.home-texts a span:after {
+	content: '\00bb';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+.home-texts a:hover span {
+	padding-right: 25px;
+}
+.home-texts a:hover span:after {
+    opacity: 1;
+    right: 0;
+}
 
 @media only screen and (max-width: 768px) {
 	nav .logo-div {
@@ -47,5 +102,25 @@ nav a {
 	}
     nav .signup-signin-div h4{
         margin-right:1rem;        
-	}
+    }
+    .home-texts{
+        flex: 80%;
+        max-width: 80%;
+    }
+    .home-texts h1{
+		font-size:30px;
+		font-family: 'Aldrich';
+    }
+    .home-texts p{
+		font-size:20px;
+		font-family: 'Abel';	
+		color:#151513;
+		background-color: #f8f9fa;
+		border-radius: 2px;
+		padding:5px 10px;
+    }
+    .home-texts a{
+        font-size: 15px;
+        width: 80%;
+    }
 }

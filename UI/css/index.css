@@ -16,14 +16,16 @@ nav .logo-div{
 	flex: 30%;
 	max-width: 30%;
 	font-family: 'Aldrich';font-size: 22px;
-    color:#fff;
+    color:#F4511E;
+    /* color:#fff;     */
     text-align:center;
 }
 nav .signup-signin-div{
 	flex: 70%;
 	max-width: 70%;
-	font-family: 'Aldrich';
-    color:#fff;
+    font-family: 'Aldrich';
+    color:#F4511E;    
+    /* color:#fff; */
     text-align:right;    
 }
 nav .signup-signin-div h4{
@@ -114,14 +116,14 @@ footer div{
         margin-right:1rem;        
     }
     .section-1{
-        min-height:400px;
+        min-height:200px;
     }
     .home-texts{
         flex: 80%;
         max-width: 80%;
     }
     .home-texts h1{
-		font-size:30px;
+		font-size:25px;
 		font-family: 'Aldrich';
     }
     .home-texts p{

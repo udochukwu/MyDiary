@@ -109,7 +109,37 @@ li.dropdown {
 	flex:50%;
 	border-radius:5px;
 	max-width: 50%;
-
+}
+.entries{
+    flex:70%;
+	padding:0rem 3rem;
+	max-width: 70%;
+}
+.entries table{
+  padding:0rem 3rem;
+}
+.entries table, td,th{
+    border-collapse: collapse;
+}
+.entries table th{
+    border-bottom: 1px solid #f4511e;
+    background-color: #fff !important;
+    padding:1rem;
+}
+.entries table td{
+    border-bottom: 1px solid #e3e4e5;
+    background-color: #fff !important;
+    padding:1rem;
+}
+.entries table p{
+    margin: 0px;
+    color:#96999b;
+}
+.entries table a{
+    color:inherit;
+}
+.entries table h4{
+    margin: 0px;
 }
 a{text-decoration: none;}
 .col-30{
@@ -151,7 +181,13 @@ a{text-decoration: none;}
 		flex:90%;
 		border-radius:5px;
 		max-width: 90%;
-	}
+    }
+    .entries{
+        flex:90%;
+        border-radius:5px;
+        max-width: 90%;
+	    padding:0rem 1rem;        
+    }
 	.sm-hide{
 		display:none;
 	}

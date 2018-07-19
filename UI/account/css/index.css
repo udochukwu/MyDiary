@@ -245,6 +245,21 @@ a{text-decoration: none;}
         max-width: 90%;
 	    padding:0rem 1rem;        
     }
+    .new-entry form .title{
+        width:100%;   
+        border:0px;  
+        border-bottom: 1px solid #e3e4e5;    
+        padding-bottom:2px;
+        height:50px;
+        font-size:30px;  
+        font-family: 'Abel';      
+    }
+    .title::placeholder { 
+        color: #B8B8B8;
+        opacity: 1; 
+        font-size:30px;
+        font-family: 'Abel';
+    }
 	.sm-hide{
 		display:none;
 	}

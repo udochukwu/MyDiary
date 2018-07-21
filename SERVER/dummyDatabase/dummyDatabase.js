@@ -22,4 +22,4 @@ const entries = [
   }
 ];
 
-export default{ entries };
+export default entries;

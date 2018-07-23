@@ -11,7 +11,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api/v1', Router);
 
-app.get('*', (req, res) => res.status(200).send({
+app.get('/', (req, res) => {
+  res.status(200)
+    .send('Welcome to MyDiary App');
+});
+
+app.get('*', (req, res) => res.status(404).send({
   message: 'Page Not Found',
 }));
 

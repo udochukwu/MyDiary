@@ -4,9 +4,10 @@
   "description": "MyDiary is an online journal where users can pen down their thoughts and feelings.",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon ./dist/server/app.js",
-    "test": " mocha dist/server/test/*.js --exit  --require babel-register --reporter spec",
-    "build": "babel ./server/ -d dist/server"
+    "start": "babel-node server/app.js",
+    "start:dev":"cross-env NODE_ENV=development nodemon --exec babel-node server/app.js",
+    "test:dev": " mocha dist/server/test/*.js --exit  --require babel-register --reporter spec",
+    "test": " mocha server/test/*.js --exit  --require babel-register --reporter spec"
   },
   "repository": {
     "type": "git",

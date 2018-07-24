@@ -4,7 +4,7 @@
   "description": "MyDiary is an online journal where users can pen down their thoughts and feelings.",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node server/app.js",
+    "start": "babel-node SERVER/app.js",
     "start:dev":"cross-env NODE_ENV=development nodemon --exec babel-node server/app.js",
     "test:dev": " mocha dist/server/test/*.js --exit  --require babel-register --reporter spec",
     "test": " mocha SERVER/test/*.js --exit  --require babel-register --reporter spec"

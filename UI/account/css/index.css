@@ -99,6 +99,9 @@ li.dropdown {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+.u-d-none{
+    display:none;
+}
 #laptop-display{
 	display:block;
 }
@@ -218,6 +221,11 @@ a{text-decoration: none;}
 @keyframes slideFromLeft {
 	from {left: -500px; opacity: 0}
 	to {left: 0; opacity: 1}
+}
+.hide-caret{
+    &:focus {
+        outline: none;
+    } 
 }
 @media only screen and (max-width: 768px) {
     /* Display on small devices */

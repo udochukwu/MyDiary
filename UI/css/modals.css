@@ -1,5 +1,5 @@
-  /* The Modal (background) */
-  .my_modal {
+/* The Modal (background) */
+.my_modal {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
 	z-index: 9999999999; /* Sit on top */
@@ -10,10 +10,10 @@
 	overflow: auto; /* Enable scroll if needed */
 	background-color: rgb(0,0,0); /* Fallback color */
 	background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-  }
+}
 
   /* Modal Content/Box */
-  .my_modal_content {
+.my_modal_content {
 	position: relative;
 	background-color: #fefefe;
     margin: auto;
@@ -24,10 +24,12 @@
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 	animation-name: animatezoom;
 	animation-duration: 0.4s
-  }
+}
 
 /* Modal Body */
-.modal-body {padding: 30px 16px;}
+.modal-body{
+	padding: 30px 16px;
+}
   
 .my_modal input[type=text],input[type=password],input[type=email],input[type=text]{
 	width: 100%;
@@ -90,29 +92,28 @@
 
 
 @media only screen and (max-width: 992px) {
-	/* Modal Content/Box */
-	.my_modal_content {
-		top:30px;
-		padding: 0;
-		width:60%;
-	}
-	
+/* Modal Content/Box */
+.my_modal_content {
+	top:30px;
+	padding: 0;
+	width:60%;
+}
 }
 
 @media only screen and (max-width: 768px) {
-	/* Modal Content/Box */
-	.my_modal_content {
-		top:30px;
-		padding: 0;
-		width:90%;
-    }
-    .cls {
-        color: #aaaaaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        position:absolute;
-        right:30px;
-        top:2px;
-    }
+/* Modal Content/Box */
+.my_modal_content {
+	top:30px;
+	padding: 0;
+	width:90%;
+}
+.cls {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	position:absolute;
+	right:30px;
+	top:2px;
+}
 }

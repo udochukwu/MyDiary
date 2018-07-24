@@ -7,17 +7,7 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('API Endpoints testing', () => {
-  describe('GET /', () => {
-    it('Should return 200', (done) => {
-      chai.request(app)
-        .get('/')
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a('object');
-          done();
-        });
-    });
+  describe('Get a non existing url/page', () => {
     it('Should return 404 for unknown routes', (done) => {
       chai.request(app)
         .get('/invalid/route')
@@ -27,10 +17,9 @@ describe('API Endpoints testing', () => {
         });
     });
   });
-});
-
-describe('Get entries', () => {
-  it('Should get all entries', (done) => {
+  
+describe('Get all diary entries from database', () => {
+  it('Should get all entries from database', (done) => {
     chai.request(app)
       .get('/api/v1/entries')
       .end((err, res) => {
@@ -38,7 +27,10 @@ describe('Get entries', () => {
         done();
       });
   });
-  it('Should get one entry', (done) => {
+});
+
+describe('Get a specified entry from database', () => {
+  it('Should get one specific entry by ID', (done) => {
     chai.request(app)
       .get('/api/v1/entries/1')
       .end((err, res) => {
@@ -49,14 +41,14 @@ describe('Get entries', () => {
   });
 });
 
-describe('Create New Entry', () => {
+describe('Create a New Entry', () => {
   const newEntry = {
     entryTitle: 'This is a new Entry Title',
     entryContent: 'This is a new entry content',
     dateTime: 'In the future',
     userId: 100
   };
-  it('Should add an entry', (done) => {
+  it('Should add a new entry to the database', (done) => {
     chai.request(app)
       .post('/api/v1/entries').send(newEntry)
       .end((err, res) => {
@@ -64,7 +56,16 @@ describe('Create New Entry', () => {
         done();
       });
   });
-  it('Should edit the entry', (done) => {
+});
+
+describe('Modify an Entry', () => {
+  const newEntry = {
+    entryTitle: 'This is a new Entry Title',
+    entryContent: 'This is a new entry content',
+    dateTime: 'In the future',
+    userId: 100
+  };
+  it('Should modify the entry', (done) => {
     chai.request(app)
       .put('/api/v1/entries/1').send({
         entryTitle: 'Updated Entry Title',

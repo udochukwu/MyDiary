@@ -23,6 +23,34 @@ describe('Create a new user', () => {
   });
 });
 
+describe('User Login', () => {
+  const user = {
+    email: 'nnaji_udochukwu@yahoo.com',
+    password: 'player009',
+  };
+  it('Should Login User to Mydiary', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login').send(user)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        done();
+      });
+  });
+
+  const wrongUser = {
+    email: '1nnaji_udochukwu@yahoo.com1',
+    password: 'wrongPassword',
+  };
+  it('Should return Invalid credentials', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login').send(wrongUser)
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        done();
+      });
+  });
+});
+
 describe('Get a non existing url/page', () => {
   it('Should return 404 for unknown routes', (done) => {
     chai.request(app)

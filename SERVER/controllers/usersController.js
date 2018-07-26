@@ -22,7 +22,7 @@ class UsersController {
         return res.json({ message: 'Could not post data', err });
       }
       const response = dbRes;
-      return res.status(200).json({ message: 'User successfully registerd', response });
+      return res.status(201).json({ message: 'User successfully registerd', response });
     });
   }
 }

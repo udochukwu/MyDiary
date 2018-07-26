@@ -7,17 +7,33 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-  describe('Get a non existing url/page', () => {
-    it('Should return 404 for unknown routes', (done) => {
-      chai.request(app)
-        .get('/invalid/route')
-        .end((err, res) => {
-          res.should.have.status(404);
-          done();
-        });
-    });
+describe('Create a new user', () => {
+  const randNum = Math.floor((Math.random() * 999999) + 1);
+  const newUser = {
+    email: `testmail${randNum}@yahoo.com`,
+    password: 'Testpassword',
+  };
+  it('Should add a new user to the database', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup').send(newUser)
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        done();
+      });
   });
-  
+});
+
+describe('Get a non existing url/page', () => {
+  it('Should return 404 for unknown routes', (done) => {
+    chai.request(app)
+      .get('/invalid/route')
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
+});
+
 describe('Get all diary entries from database', () => {
   it('Should get all entries from database', (done) => {
     chai.request(app)

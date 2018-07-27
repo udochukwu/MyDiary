@@ -1,5 +1,3 @@
-import entries from '../dummyDatabase/dummyDatabase';
-
 import db from '../db/dbConfig';
 
 

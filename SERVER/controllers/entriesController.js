@@ -47,15 +47,19 @@ class EntriesController {
     * @param {object} req - The request payload sent to the router
     * @param {object} res - The response payload sent back from the controller
     * @returns {object} - status Message and the particular entry by id.
-    * @memberOf BusinessController
+    * @memberOf entriesController
     */
   static fetchEntryById(req, res) {
-    const id = req.params.entryId;
-    const entry = entries.find(entryItem => +entryItem.entryId === +id);
-    if (!entry) {
-      return res.status(404).json({ message: `Entry with entryId ${id} does not exist` });
-    }
-    return res.json({ message: 'Entries search was successful', entry });
+    db.query(`SELECT * FROM entries WHERE entryId = ${req.params.entryId}`, (err, dbRes) => {
+      if (err) {
+        return res.json({ message: 'Entry could not be fetched', err });
+      }
+      const response = dbRes;
+      if (response.rowCount === 0) {
+        return res.status(404).json({ message: 'No entry available at this time', entries: response.rows });
+      }
+      return res.json({ message: `Entry  with ID ${req.params.entryId} loaded successfully`, entries: response.rows });
+    });
   }
 
   /**

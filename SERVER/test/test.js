@@ -62,28 +62,6 @@ describe('Get all diary entries for a specific user from database', () => {
   });
 });
 
-describe('Get a non existing url/page', () => {
-  it('Should return 404 for unknown routes', (done) => {
-    chai.request(app)
-      .get('/invalid/route')
-      .end((err, res) => {
-        res.should.have.status(404);
-        done();
-      });
-  });
-});
-
-describe('Get all diary entries from database', () => {
-  it('Should get all entries from database', (done) => {
-    chai.request(app)
-      .get('/api/v1/entries')
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        done();
-      });
-  });
-});
-
 describe('Get a specified entry from database', () => {
   it('Should get one specific entry by ID', (done) => {
     chai.request(app)
@@ -95,6 +73,29 @@ describe('Get a specified entry from database', () => {
       });
   });
 });
+
+describe('Get a non existing url/page', () => {
+  it('Should return 404 for unknown routes', (done) => {
+    chai.request(app)
+      .get('/invalid/route')
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
+});
+
+describe('Get all diary entries from dummydatabase', () => {
+  it('Should get all entries from database', (done) => {
+    chai.request(app)
+      .get('/api/v1/entries')
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        done();
+      });
+  });
+});
+
 
 describe('Create a New Entry', () => {
   const newEntry = {

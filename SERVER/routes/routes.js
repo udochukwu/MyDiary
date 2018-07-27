@@ -10,7 +10,7 @@ const { registerUser, login } = UsersController;
 const router = express.Router();
 router.post('/auth/signup', registerUser);
 router.post('/auth/login', login);
-router.get('/entries/user/:userId', fetchUserEntries );
+router.get('/entries/user/:userId', fetchUserEntries);
 router.get('/entries', fetchAllEntries);
 router.get('/entries/:entryId', fetchEntryById);
 router.post('/entries', createEntry);

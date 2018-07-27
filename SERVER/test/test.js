@@ -51,6 +51,17 @@ describe('User Login', () => {
   });
 });
 
+describe('Get all diary entries for a specific user from database', () => {
+  it('Should get user specific entries', (done) => {
+    chai.request(app)
+      .get('/api/v1/entries/user/1')
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        done();
+      });
+  });
+});
+
 describe('Get a non existing url/page', () => {
   it('Should return 404 for unknown routes', (done) => {
     chai.request(app)

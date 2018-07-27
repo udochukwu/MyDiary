@@ -68,6 +68,27 @@ class EntriesController {
       return res.status(201).send({ message: 'New Enry Was succesfully added', dbRes });
     });
   }
+
+  /**
+    * @static
+    * @param {object} req - The request payload sent to the router
+    * @param {object} res - The response payload sent back from the controller
+    * @returns {object} - status Message and the particular updated entry created.
+    * @memberOf entriesController
+    */
+  static modifyEntry(req, res) {
+    const data = {
+      entryId: req.params.entryId,
+      entryTitle: req.body.entryTitle,
+      entryContent: req.body.entryContent
+    };
+    db.query(`UPDATE entries SET entryTitle = '${data.entryTitle}', entryContent = '${data.entryContent}' WHERE entryId = ${data.entryId}`, (err, dbRes) => {
+      if (err) {
+        return res.json({ message: 'Could not update entry', err });
+      }
+      return res.status(201).send({ message: 'New Enry Was succesfully updated', dbRes });
+    });
+  }
 }
 
 export default EntriesController;

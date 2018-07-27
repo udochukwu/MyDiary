@@ -3,7 +3,7 @@ import EntriesController from '../controllers/entriesController';
 import UsersController from '../controllers/usersController';
 
 const {
-  fetchUserEntries, fetchAllEntries, fetchEntryById, createEntry, updateEntry
+  fetchUserEntries, fetchEntryById, createNewEntry
 } = EntriesController;
 const { registerUser, login } = UsersController;
 
@@ -12,9 +12,6 @@ router.post('/auth/signup', registerUser);
 router.post('/auth/login', login);
 router.get('/entries/user/:userId', fetchUserEntries);
 router.get('/entries/:entryId', fetchEntryById);
-router.get('/entries', fetchAllEntries);
-router.post('/entries', createEntry);
-router.put('/entries/:entryId', updateEntry);
-
+router.post('/entries', createNewEntry);
 
 export default router;

@@ -74,35 +74,12 @@ describe('Get a specified entry from database', () => {
   });
 });
 
-describe('Get a non existing url/page', () => {
-  it('Should return 404 for unknown routes', (done) => {
-    chai.request(app)
-      .get('/invalid/route')
-      .end((err, res) => {
-        res.should.have.status(404);
-        done();
-      });
-  });
-});
-
-describe('Get all diary entries from dummydatabase', () => {
-  it('Should get all entries from database', (done) => {
-    chai.request(app)
-      .get('/api/v1/entries')
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        done();
-      });
-  });
-});
-
-
 describe('Create a New Entry', () => {
   const newEntry = {
     entryTitle: 'This is a new Entry Title',
     entryContent: 'This is a new entry content',
     dateTime: 'In the future',
-    userId: 100
+    userId: 1
   };
   it('Should add a new entry to the database', (done) => {
     chai.request(app)
@@ -114,21 +91,12 @@ describe('Create a New Entry', () => {
   });
 });
 
-describe('Modify an Entry', () => {
-  const newEntry = {
-    entryTitle: 'This is a new Entry Title',
-    entryContent: 'This is a new entry content',
-    dateTime: 'In the future',
-    userId: 100
-  };
-  it('Should modify the entry', (done) => {
+describe('Get a non existing url/page', () => {
+  it('Should return 404 for unknown routes', (done) => {
     chai.request(app)
-      .put('/api/v1/entries/1').send({
-        entryTitle: 'Updated Entry Title',
-        entryContent: 'Updated Entry Content',
-      })
+      .get('/invalid/route')
       .end((err, res) => {
-        expect(res).to.have.status(200);
+        res.should.have.status(404);
         done();
       });
   });

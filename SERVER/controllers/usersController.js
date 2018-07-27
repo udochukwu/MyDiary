@@ -1,6 +1,5 @@
 
-const db = require('../db/dbConfig');
-
+import db from '../db/dbConfig';
 
 /**
   * @class usersController

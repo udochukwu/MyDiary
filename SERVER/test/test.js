@@ -91,6 +91,20 @@ describe('Create a New Entry', () => {
   });
 });
 
+describe('Modify an Entry', () => {
+  it('Should modify the entry', (done) => {
+    chai.request(app)
+      .put('/api/v1/entries/1').send({
+        entryTitle: 'Updated Entry Title from test',
+        entryContent: 'Updated Entry Content',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        done();
+      });
+  });
+});
+
 describe('Get a non existing url/page', () => {
   it('Should return 404 for unknown routes', (done) => {
     chai.request(app)

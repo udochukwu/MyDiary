@@ -1,11 +1,34 @@
 import entries from '../dummyDatabase/dummyDatabase';
 
+import db from '../db/dbConfig';
+
+
 /**
   * @class entriesController
   * @description CRUD operations on Entries
   */
 class EntriesController {
-/**
+  /**
+  * @static
+  * @param {object} req - The request payload recieved from the router
+  * @param {object} res - The response payload sent back from the controller
+  * @returns {object} - status Message and list of all entries*
+  * @memberOf EntriesController
+  */
+  static fetchUserEntries(req, res) {
+    db.query(`SELECT * FROM entries WHERE userId = ${req.params.userId}`, (err, dbRes) => {
+      if (err) {
+        return res.json({ message: 'Entries could not be fetched', err });
+      }
+      const response = dbRes;
+      if (response.rowCount === 0) {
+        return res.status(404).json({ message: 'No entry available at this time', entries: response.rows });
+      }
+      return res.json({ message: `Entries list for user with ID ${req.params.userId} loaded successfully`, entries: response.rows });
+    });
+  }
+
+  /**
   * @static
   * @param {object} req - The request payload recieved from the router
   * @param {object} res - The response payload sent back from the controller

@@ -1,16 +1,18 @@
 import express from 'express';
 import EntriesController from '../controllers/entriesController';
+import UsersController from '../controllers/usersController';
 
 const {
-  fetchAllEntries, fetchEntryById, createEntry, updateEntry
+  fetchUserEntries, fetchEntryById, createNewEntry, modifyEntry,
 } = EntriesController;
-
+const { registerUser, login } = UsersController;
 
 const router = express.Router();
-router.get('/entries', fetchAllEntries);
+router.post('/auth/signup', registerUser);
+router.post('/auth/login', login);
+router.get('/entries/user/:userId', fetchUserEntries);
 router.get('/entries/:entryId', fetchEntryById);
-router.post('/entries', createEntry);
-router.put('/entries/:entryId', updateEntry);
-
+router.post('/entries', createNewEntry);
+router.put('/entries/:entryId', modifyEntry);
 
 export default router;

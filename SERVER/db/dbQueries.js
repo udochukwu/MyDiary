@@ -6,24 +6,31 @@ import db from './dbConfig';
   * @description CRUD operations on users and entries
   */
 class DbQueries {
-  /**
-  * @static
-  * @param {object} req - The request payload recieved from the router
-  * @param {object} res - The response payload sent back from the controller
-  * @param {object} next - The Callback argument to the middleware function
-  *
-  * @returns {object} - status Message and request response*
-  * @memberOf DbQueries
-  */
-  static addUserToDb(req, res) {
+  // add a user to database
+  static addUserToDb(req, res, next) {
     const registerdon = new Date();
     const { email, password } = req.body;
     db.query('INSERT INTO users(email, password, registerdon) values($1, $2, $3) RETURNING *', [email, password, registerdon], (err, dbRes) => {
       if (err) {
+        if (err.code !== '23505') {
+          return res.json({ message: 'Could not post data', err });
+        }
+        return res.status(201).json({ message: 'Email Address Already Exists on our database' });
+      }
+      res.locals.dbRes = dbRes;
+      next();
+    });
+  }
+
+  // get a user from database
+  static getUser(req, res, next) {
+    const { email, password } = req.body;
+    db.query(`SELECT * FROM users WHERE email = '${email}' AND password = '${password}' `, (err, dbRes) => {
+      if (err) {
         return res.json({ message: 'Could not post data', err });
       }
-      const response = dbRes;
-      return res.status(201).json({ message: 'User successfully registerd', response });
+      res.locals.dbRes = dbRes;
+      next();
     });
   }
 }

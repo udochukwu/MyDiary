@@ -27,7 +27,7 @@ class DbQueries {
     const { email, password } = req.body;
     db.query(`SELECT * FROM users WHERE email = '${email}' AND password = '${password}' `, (err, dbRes) => {
       if (err) {
-        return res.json({ message: 'Could not post data', err });
+        return res.json({ message: 'Could not get data', err });
       }
       res.locals.dbRes = dbRes;
       next();

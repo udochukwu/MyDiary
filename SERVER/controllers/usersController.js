@@ -17,7 +17,7 @@ class UsersController {
     if (rowCount === 0) {
       return res.status(404).json({ message: 'Incorrect Email or password', rows });
     }
-    return res.status(200).json({ message: 'User successfully Registerd', user });
+    return res.status(201).json({ message: 'User successfully Registerd', user });
   }
 }
 

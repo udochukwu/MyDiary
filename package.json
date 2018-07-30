@@ -8,8 +8,8 @@
     "start:dev": "nodemon --exec babel-node SERVER/app.js",
     "test:dev": " mocha dist/server/test/*.js --exit  --require babel-register --reporter spec",
     "test": " mocha SERVER/test/*.js --exit  --require babel-register --reporter spec",
-    "truncateTable" :"nodemon --exec babel-node SERVER/db/truncateTables.js",
-    "createTables" :"nodemon --exec babel-node SERVER/db/createTables.js"    
+    "truncateTable": "nodemon --exec babel-node SERVER/db/truncateTables.js",
+    "createTables": "nodemon --exec babel-node SERVER/db/createTables.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
     "morgan": "^1.9.0",
     "pg": "^7.4.3"
   },

@@ -1,16 +1,11 @@
 
 import db from './dbConfig';
 
-// const dropTable = 'DROP TABLE IF EXISTS users CASCADE;';
-const createTables = `CREATE TABLE users(
-    userId SERIAL PRIMARY KEY,
-    email VARCHAR(40) UNIQUE NOT NULL,
-    password VARCHAR(40) NOT NULL,
-    registerdOn TIMESTAMP)`;
+const dropTables = 'DROP TABLE IF EXISTS users CASCADE;';
 
-db.query(createTables, (err) => {
+db.query(dropTables, (err) => {
   if (err) {
-    console.log(`Could not create table ${err}`);
+    console.log(`Could not dropTables ${err}`);
   }
-  console.log('Table was successfully created');
+  console.log('Table was successfully Droped');
 });

@@ -43,28 +43,16 @@ before((done) => {
 //   });
 // });
 
-// describe('User Login', () => {
-//   it('Should Login User to Mydiary', (done) => {
-//     chai.request(app)
-//       .post('/api/v1/auth/login').send(user)
-//       .end((err, res) => {
-//         console.log(`$aaaaaaaaaaaaa  ${res.response.token}`);
-//         const token = res.body;
-//         token = token;
-//         expect(res).to.have.status(200);
-//         done();
-//       });
-//   });
-//   it('Should return Invalid credentials', (done) => {
-//     chai.request(app)
-//       .post('/api/v1/auth/login').send(wrongUser)
-//       .end((err, res) => {
-//         console.log('respone', res);
-//         expect(res).to.have.status(404);
-//         done();
-//       });
-//   });
-// });
+describe('post get/api/v1/auth/signin', () => {
+  it('Should return Invalid credentials', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login').send(wrongUser)
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        done();
+      });
+  });
+});
 
 describe('Get all diary entries for a specific user from database', () => {
   it('Should get user specific entries', (done) => {

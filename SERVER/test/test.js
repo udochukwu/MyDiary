@@ -23,11 +23,15 @@ const wrongUser = {
 
 before((done) => {
   chai.request(app)
+    .post('/api/v1/auth/signup').send(user)
+    .end((err, res) => {
+      expect(res).to.have.status(201);
+    });
+  chai.request(app)
     .post('/api/v1/auth/login').send(user)
     .end((err, res) => {
-      console.log(`$aaaaaaaaaaaaa  ${res.body.token}`);
       tk = res.body.token;
-      console.log(`$aaaaaaaaaaaaa  ${tk}`);
+      // console.log(`$aaaaaaaaaaaaa  ${tk}`);
       expect(res).to.have.status(200);
       done();
     });

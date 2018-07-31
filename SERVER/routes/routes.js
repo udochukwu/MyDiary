@@ -3,7 +3,6 @@ import EntriesController from '../controllers/entriesController';
 import UsersController from '../controllers/usersController';
 import DbQueries from '../db/dbQueries';
 
-
 const {
   fetchUserEntries, fetchEntryById, createNewEntry, modifyEntry,
 } = EntriesController;

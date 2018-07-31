@@ -2,6 +2,8 @@ import chaiHttp from 'chai-http';
 import chai, { expect } from 'chai';
 import app from '../app';
 
+ let token = '';
+
 /* eslint-disable no-unused-vars */
 const should = chai.should();
 
@@ -10,8 +12,8 @@ chai.use(chaiHttp);
 describe('Create a new user', () => {
   const randNum = Math.floor((Math.random() * 999999) + 1);
   const newUser = {
-    email: `testmail${randNum}@yahoo.com`,
-    password: 'Testpassword',
+    email: `nnaji_udochukwu@yahoo.com`,
+    password: 'testpassword',
   };
   it('Should add a new user to the database', (done) => {
     chai.request(app)
@@ -26,19 +28,21 @@ describe('Create a new user', () => {
 describe('User Login', () => {
   const user = {
     email: 'nnaji_udochukwu@yahoo.com',
-    password: 'player009',
+    password: 'testpassword',
   };
   it('Should Login User to Mydiary', (done) => {
     chai.request(app)
       .post('/api/v1/auth/login').send(user)
       .end((err, res) => {
+        const { tk } = res.token;
+        token = tk;
         expect(res).to.have.status(200);
         done();
       });
   });
 
   const wrongUser = {
-    email: '1nnaji_udochukwu@yahoo.com1',
+    email: 'nnaji_udochukwu@yahoo.com',
     password: 'wrongPassword',
   };
   it('Should return Invalid credentials', (done) => {

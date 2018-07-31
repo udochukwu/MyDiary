@@ -11,9 +11,10 @@ const user = {
   email: 'nnaji_udochukwu@yahoo.com',
   password: 'player009'
 };
+const randNum = Math.floor((Math.random() * 999999) + 1);
 const newUser = {
-  email: 'nnaji_udochukwu@yahoo.com',
-  password: 'player009'
+  email: `testmail${randNum}@yahoo.com`,
+  password: 'Testpassword',
 };
 const wrongUser = {
   email: 'nnaji_udochukwu@yahoo.com',
@@ -32,18 +33,18 @@ before((done) => {
     });
 });
 
-// describe('Create a new user', () => {
-//   it('Should add a new user to the database', (done) => {
-//     chai.request(app)
-//       .post('/api/v1/auth/signup').send(newUser)
-//       .end((err, res) => {
-//         expect(res).to.have.status(201);
-//         done();
-//       });
-//   });
-// });
+describe('Create a new user', () => {
+  it('Should add a new user to the database', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup').send(newUser)
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        done();
+      });
+  });
+});
 
-describe('post get/api/v1/auth/signin', () => {
+describe('Sign in with wrong credentials', () => {
   it('Should return Invalid credentials', (done) => {
     chai.request(app)
       .post('/api/v1/auth/login').send(wrongUser)

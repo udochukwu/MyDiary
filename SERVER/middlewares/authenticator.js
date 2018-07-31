@@ -8,7 +8,7 @@ export default {
   },
 
   checkToken(req, res, next) {
-    const token = req.body.token || req.query.token || req.headers.token;
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
     if (!token) {
       res.status(403)
         .json({
@@ -30,8 +30,8 @@ export default {
               });
           }
         }
-        req.user = user;
-        return next();
+        // req.user = user;
+        next();
       });
     }
   }

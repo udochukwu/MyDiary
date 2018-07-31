@@ -14,7 +14,6 @@ before_script:
   - npm install
   - npm i nyc --save-dev
  - psql -c 'create database myDiary;' -U postgres
-  - npm i nyc --save-dev
 
 notifications:
   email: false

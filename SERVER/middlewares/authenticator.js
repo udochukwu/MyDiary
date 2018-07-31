@@ -13,7 +13,7 @@ export default {
     if (!token) {
       res.status(403)
         .json({
-          success: true,
+          success: false,
           message: 'Missing Token'
         });
     } else {

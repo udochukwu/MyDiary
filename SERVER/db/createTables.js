@@ -6,7 +6,7 @@ const createUserTable = `CREATE TABLE users(
     userId SERIAL PRIMARY KEY,
     email VARCHAR(40) UNIQUE NOT NULL,
     password VARCHAR(40) NOT NULL,
-    registerdOn TIMESTAMP)`;
+    registerdOn TIMESTAMP default current_timestamp)`;
 
 const createEntriesTable = `CREATE TABLE entries(
       entryId SERIAL,
@@ -14,7 +14,7 @@ const createEntriesTable = `CREATE TABLE entries(
       REFERENCES users(userId) ON DELETE CASCADE,
       entryTitle VARCHAR(40) NOT NULL,
       entryContent TEXT NOT NULL,
-      dateTime TIMESTAMP NOT NULL,
+      dateTime TIMESTAMP NOT NULL default current_timestamp,
       PRIMARY KEY (userId,entryId))`;
 
 db.query(createUserTable, (err) => {

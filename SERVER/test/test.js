@@ -3,8 +3,6 @@ import chai, { expect } from 'chai';
 import app from '../app';
 
 let tk = '';
-const should = chai.should();
-
 chai.use(chaiHttp);
 
 const user = {

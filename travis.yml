@@ -5,14 +5,8 @@ node_js:
 services:
   - postgresql
 
-postgres:
-  adapter: postgresql
-  database: myDiary
-  username: postgres
-
 before_script:
-  - npm install
-  - psql -c 'create database myDiary;' -U postgres
+  - psql -c 'create database travis_ci_test;' -U postgres
  
 script:
   - npm run test

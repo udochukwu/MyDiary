@@ -7,8 +7,9 @@
     "start": "nodemon --exec babel-node SERVER/app.js",
     "start:dev": "nodemon --exec babel-node SERVER/app.js",
     "test:dev": " mocha dist/server/test/*.js --exit  --require babel-register --reporter spec",
-    "test": " npm run dropTables && npm run createTables && mocha SERVER/test/*.js --exit  --require babel-register --reporter spec",
-    "testa": " mocha SERVER/test/*.js --exit  --require babel-register --reporter spec",
+    "test": " npm run dropTables && npm run createTables && nyc --reporter=html --reporter=text mocha SERVER/test/*.js --exit  --require babel-register ",
+    "coverage": "nyc report  --reporter=html  --reporter=text-lcov | coveralls",
+    "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "createTables": "babel-node SERVER/db/createTables.js",
     "dropTables": "babel-node SERVER/db/dropTables.js"
   },
@@ -33,6 +34,7 @@
     "jsonwebtoken": "^8.3.0",
     "mocha-lcov-reporter": "^1.3.0",
     "morgan": "^1.9.0",
+    "nyc": "^12.0.2",
     "pg": "^7.4.3",
     "validator": "^10.4.0"
   },

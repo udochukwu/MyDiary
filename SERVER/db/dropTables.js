@@ -1,11 +1,19 @@
 
 import db from './dbConfig';
 
-const dropTables = 'DROP TABLE IF EXISTS users CASCADE;';
+const dropUsersTable = 'DROP TABLE IF EXISTS users CASCADE;';
+const dropEntriesTable = 'DROP TABLE IF EXISTS entries CASCADE;';
 
-db.query(dropTables, (err) => {
+
+db.query(dropUsersTable, (err) => {
   if (err) {
-    console.log(`Could not dropTables ${err}`);
+    console.log(`Could not dropTable Users ${err}`);
   }
-  console.log('Table was successfully Droped');
+  console.log('Users table  was successfully Droped');
+  db.query(dropEntriesTable, (err) => {
+    if (err) {
+      console.log(`Could not dropTableEntries ${err}`);
+    }
+    console.log('Table Entries was successfully Droped');
+  });
 });

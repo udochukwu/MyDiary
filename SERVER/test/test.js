@@ -7,12 +7,14 @@ chai.use(chaiHttp);
 
 const user = {
   email: 'nnaji_udochukwu@yahoo.com',
-  password: 'player009'
+  password: 'player009',
+  confirmPassword: 'player009'
 };
 const randNum = Math.floor((Math.random() * 999999) + 1);
 const newUser = {
-  email: `testmail${randNum}@yahoo.com`,
-  password: 'Testpassword',
+  email: `randomuser${randNum}@yahoo.com`,
+  password: 'player009',
+  confirmPassword: 'player009'  
 };
 const wrongUser = {
   email: 'nnaji_udochukwu@yahoo.com',
@@ -119,8 +121,8 @@ describe('Get a non existing url/page', () => {
   it('Should return 404 for unknown routes', (done) => {
     chai.request(app)
       .get('/invalid/route')
-      .set('x-access-token', tk)
       .end((err, res) => {
+        console.log(res.status);
         res.should.have.status(404);
         done();
       });

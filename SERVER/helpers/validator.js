@@ -47,5 +47,25 @@ export default {
     } else {
       res.status(406).json({ success: false, message: 'Please check your inputs', errors });
     }
+  },
+  
+  //validate login inputs
+  entriesValidation(req, res, next) {
+    const errors = {};
+    const { entryTitle, entryContent} = req.body;
+    
+    if (validator.isEmpty(entryTitle)) {
+      errors.entryTitle = 'Please add a title';
+    }
+    if (validator.isEmpty(entryContent)) {
+      errors.entryContent = 'Please add a content';
+    }
+    
+    const errorLength = Object.keys(errors).length;
+    if (errorLength === 0){
+      next();
+    } else {
+      res.status(406).json({ success: false, message: 'Please check your inputs', errors });
+    }
   }
 };

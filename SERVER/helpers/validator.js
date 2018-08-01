@@ -1,6 +1,7 @@
 import validator from 'validator';
 
 export default {
+  //validate registration inputs
   regValidation(req, res, next) {
     const errors = {};
     const { email, password, confirmPassword } = req.body;
@@ -11,10 +12,15 @@ export default {
     if (validator.isEmpty(password)) {
       errors.password = 'Password Empty';
     }
-    if (password !== confirmPassword) {
-      errors.confirmPassword = 'Password does not match';
+    if (validator.isEmpty(confirmPassword)) {
+      errors.confirmPassword = 'Please Retype Password';
+    }else{
+      if (password !== confirmPassword) {
+        errors.confirmPassword = 'Password does not match';
+      }
     }
     
+    // check if there where any errors
     const errorLength = Object.keys(errors).length;
     if (errorLength === 0){
       next();
@@ -23,6 +29,7 @@ export default {
     }
   },
 
+  //validate login inputs
   loginValidation(req, res, next) {
     const errors = {};
     const { email, password} = req.body;

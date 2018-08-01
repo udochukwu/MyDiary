@@ -14,11 +14,11 @@ const {
   addUserToDb, getUser, getEntriesByUserId, getEntryById, addEntryToDb, modifyDbEntry
 } = DbQueries;
 const { checkToken } = Authenticator;
-const { regValidation } = Validator;
+const { regValidation, loginValidation } = Validator;
 
 const router = express.Router();
 router.post('/auth/signup', regValidation, addUserToDb, register);
-router.post('/auth/login', getUser, login);
+router.post('/auth/login', loginValidation, getUser, login);
 router.get('/entries/user/:userId', checkToken, getEntriesByUserId, fetchUserEntries);
 router.get('/entries/:entryId', checkToken, getEntryById, fetchEntryById);
 router.post('/entries', checkToken, addEntryToDb, createNewEntry);

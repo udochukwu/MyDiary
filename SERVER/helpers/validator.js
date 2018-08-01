@@ -2,27 +2,43 @@ import validator from 'validator';
 
 export default {
   regValidation(req, res, next) {
-    console.log(req.body);    
     const errors = {};
     const { email, password, confirmPassword } = req.body;
-    if (!validator.isEmail(email)) {
-      errors['email'] = 'invalid email';
+    
+    if ((!validator.isEmail(email)) || (validator.isEmpty(email)) ) {
+      errors.email = 'invalid email';
     }
     if (validator.isEmpty(password)) {
-      errors['password'] = 'Password Empty';
+      errors.password = 'Password Empty';
     }
     if (password !== confirmPassword) {
-      errors['confirmPassword'] = 'Password does not match';
+      errors.confirmPassword = 'Password does not match';
     }
-
-    if ( errors.length === 0) {
-    console.log('no errors');  
+    
+    const errorLength = Object.keys(errors).length;
+    if (errorLength === 0){
       next();
     } else {
-    console.log(`length  equals ${errors.length}`);              
-      
-    console.log(errors);            
-      res.status(406).json({ message: 'Please check your inputs', errors });
+      res.status(406).json({ success: false, message: 'Please check your inputs', errors });
+    }
+  },
+
+  loginValidation(req, res, next) {
+    const errors = {};
+    const { email, password} = req.body;
+    
+    if ((!validator.isEmail(email)) || (validator.isEmpty(email)) ) {
+      errors.email = 'invalid email';
+    }
+    if (validator.isEmpty(password)) {
+      errors.password = 'Password Empty';
+    }
+    
+    const errorLength = Object.keys(errors).length;
+    if (errorLength === 0){
+      next();
+    } else {
+      res.status(406).json({ success: false, message: 'Please check your inputs', errors });
     }
   }
 };

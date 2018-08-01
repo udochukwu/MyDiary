@@ -27,7 +27,6 @@ before((done) => {
     .post('/api/v1/auth/login').send(user)
     .end((err, res) => {
       tk = res.body.token;
-      // console.log(`$aaaaaaaaaaaaa  ${tk}`);
       expect(res).to.have.status(200);
       done();
     });

@@ -9,6 +9,7 @@ class UsersController {
 
     const user = rows[0];
     if (rowCount === 0) {
+      console.log('fails here');
       return res.status(404).json({ message: 'Incorrect Email or password', rows });
     }
     const token = generateToken(user);

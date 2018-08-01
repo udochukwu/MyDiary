@@ -13,7 +13,9 @@ postgres:
 before_script:
   - npm install
  - psql -c 'create database myDiary;' -U postgres
-
+ 
+script:
+  - npm run test
 notifications:
   email: false
 
@@ -21,8 +23,7 @@ env:
   global:
   - export NODE_ENV=test
 
-script:
-  - npm run test
+
 after_success:
   - npm run coverage
   - npm run coveralls

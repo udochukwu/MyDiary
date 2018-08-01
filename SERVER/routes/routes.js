@@ -3,6 +3,7 @@ import EntriesController from '../controllers/entriesController';
 import UsersController from '../controllers/usersController';
 import DbQueries from '../db/dbQueries';
 import Authenticator from '../middlewares/authenticator';
+import Validator from '../helpers/validator';
 
 
 const {
@@ -13,10 +14,10 @@ const {
   addUserToDb, getUser, getEntriesByUserId, getEntryById, addEntryToDb, modifyDbEntry
 } = DbQueries;
 const { checkToken } = Authenticator;
-
+const { regValidation } = Validator;
 
 const router = express.Router();
-router.post('/auth/signup', addUserToDb, register);
+router.post('/auth/signup', regValidation, addUserToDb, register);
 router.post('/auth/login', getUser, login);
 router.get('/entries/user/:userId', checkToken, getEntriesByUserId, fetchUserEntries);
 router.get('/entries/:entryId', checkToken, getEntryById, fetchEntryById);

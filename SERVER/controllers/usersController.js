@@ -16,12 +16,8 @@ class UsersController {
   }
 
   static register(req, res) {
-    const { rows, rowCount } = res.locals.dbRes;
-
+    const { rows } = res.locals.dbRes;
     const user = rows[0];
-    if (rowCount === 0) {
-      return res.status(404).json({ message: 'Incorrect Email or password', rows });
-    }
     return res.status(201).json({ message: 'User successfully Registerd', user });
   }
 }

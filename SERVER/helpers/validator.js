@@ -1,12 +1,12 @@
 import validator from 'validator';
 
 export default {
-  //validate registration inputs
-  regValidation(req, res, next){
+  // validate registration inputs
+  regValidation(req, res, next) {
     const errors = {};
     const { email, password, confirmPassword } = req.body;
-    
-    if ((!validator.isEmail(email)) || (validator.isEmpty(email)) ) {
+
+    if ((!validator.isEmail(email)) || (validator.isEmpty(email))) {
       errors.email = 'invalid email';
     }
     if (validator.isEmpty(password)) {
@@ -14,55 +14,53 @@ export default {
     }
     if (validator.isEmpty(confirmPassword)) {
       errors.confirmPassword = 'Please Retype Password';
-    } else {
-      if (password !== confirmPassword) {
+    } else if (password !== confirmPassword) {
         errors.confirmPassword = 'Password does not match';
       }
-    }
 
     // check if there where any errors
     const errorLength = Object.keys(errors).length;
-    if (errorLength === 0){
+    if (errorLength === 0) {
       next();
     } else {
       res.status(406).json({ success: false, message: 'Please check your inputs', errors });
     }
   },
 
-  //validate login inputs
+  // validate login inputs
   loginValidation(req, res, next) {
     const errors = {};
-    const { email, password} = req.body;
-    
-    if ((!validator.isEmail(email)) || (validator.isEmpty(email)) ) {
+    const { email, password } = req.body;
+
+    if ((!validator.isEmail(email)) || (validator.isEmpty(email))) {
       errors.email = 'invalid email';
     }
     if (validator.isEmpty(password)) {
       errors.password = 'Password Empty';
     }
-    
+
     const errorLength = Object.keys(errors).length;
-    if (errorLength === 0){
+    if (errorLength === 0) {
       next();
     } else {
       res.status(406).json({ success: false, message: 'Please check your inputs', errors });
     }
   },
 
-  //validate login inputs
+  // validate login inputs
   entriesValidation(req, res, next) {
     const errors = {};
-    const { entryTitle, entryContent} = req.body;
-    
+    const { entryTitle, entryContent } = req.body;
+
     if (validator.isEmpty(entryTitle)) {
       errors.entryTitle = 'Please add a title';
     }
     if (validator.isEmpty(entryContent)) {
       errors.entryContent = 'Please add a content';
     }
-    
+
     const errorLength = Object.keys(errors).length;
-    if (errorLength === 0){
+    if (errorLength === 0) {
       next();
     } else {
       res.status(406).json({ success: false, message: 'Please check your inputs', errors });

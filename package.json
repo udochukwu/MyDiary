@@ -8,9 +8,9 @@
     "start:dev": "nodemon --exec babel-node SERVER/app.js",
     "test:dev": " mocha dist/server/test/*.js --exit  --require babel-register --reporter spec",
     "test": " npm run dropTables && npm run createTables && mocha SERVER/test/*.js --exit  --require babel-register --reporter spec",
-    "testa": " mocha SERVER/test/*.js --exit  --require babel-register --reporter spec",    
-    "createTables" :"babel-node SERVER/db/createTables.js",
-    "dropTables" :"babel-node SERVER/db/dropTables.js"
+    "testa": " mocha SERVER/test/*.js --exit  --require babel-register --reporter spec",
+    "createTables": "babel-node SERVER/db/createTables.js",
+    "dropTables": "babel-node SERVER/db/dropTables.js"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,8 @@
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
     "morgan": "^1.9.0",
-    "pg": "^7.4.3"
+    "pg": "^7.4.3",
+    "validator": "^10.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

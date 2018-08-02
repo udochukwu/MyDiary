@@ -53,7 +53,7 @@ describe('Create a new user with an empty or invalid email address', () => {
         confirmPassword: 'player009'
       })
       .end((err, res) => {
-        expect(res).to.have.status(406);
+        expect(res).to.have.status(400);
         done();
       });
   });
@@ -68,7 +68,7 @@ describe('Create a new user with an empty password', () => {
         confirmPassword: 'player009'
       })
       .end((err, res) => {
-        expect(res).to.have.status(406);
+        expect(res).to.have.status(400);
         done();
       });
   });
@@ -83,7 +83,7 @@ describe('Create a new user with unmatching passwords', () => {
         confirmPassword: 'player009'
       })
       .end((err, res) => {
-        expect(res).to.have.status(406);
+        expect(res).to.have.status(400);
         done();
       });
   });
@@ -104,28 +104,28 @@ describe('Sign in with wrong password', () => {
 });
 
 describe('Sign in with an empty email', () => {
-  it('Should return error 406', (done) => {
+  it('Should return error 400', (done) => {
     chai.request(app)
       .post('/api/v1/auth/login').send({
         email: '',
         password: 'player009',
       })
       .end((err, res) => {
-        expect(res).to.have.status(406);
+        expect(res).to.have.status(400);
         done();
       });
   });
 });
 
 describe('Sign in with an empty password', () => {
-  it('Should return error 406', (done) => {
+  it('Should return error 400', (done) => {
     chai.request(app)
       .post('/api/v1/auth/login').send({
         email: 'nnaji_udochukwu@yahoo.com',
         password: '',
       })
       .end((err, res) => {
-        expect(res).to.have.status(406);
+        expect(res).to.have.status(400);
         done();
       });
   });
@@ -187,7 +187,7 @@ describe('Create a New Entry', () => {
 });
 
 describe('Create a New Entry With an empty entry title', () => {
-  it('Should return an error with 406', (done) => {
+  it('Should return an error with 400', (done) => {
     chai.request(app)
       .post('/api/v1/entries').send({
         entryTitle: '',
@@ -197,14 +197,14 @@ describe('Create a New Entry With an empty entry title', () => {
       })
       .set('x-access-token', tk)
       .end((err, res) => {
-        expect(res).to.have.status(406);
+        expect(res).to.have.status(400);
         done();
       });
   });
 });
 
 describe('Create a New Entry With an empty entry content', () => {
-  it('Should return an error with 406', (done) => {
+  it('Should return an error with 400', (done) => {
     chai.request(app)
       .post('/api/v1/entries').send({
         entryTitle: 'This is a new entry title',
@@ -214,7 +214,7 @@ describe('Create a New Entry With an empty entry content', () => {
       })
       .set('x-access-token', tk)
       .end((err, res) => {
-        expect(res).to.have.status(406);
+        expect(res).to.have.status(400);
         done();
       });
   });

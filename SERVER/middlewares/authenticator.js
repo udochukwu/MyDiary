@@ -8,7 +8,7 @@ export default {
   },
 
   checkToken(req, res, next) {
-    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    const token = req.headers['x-access-token'];
     if (!token) {
       res.status(403)
         .json({
@@ -16,7 +16,7 @@ export default {
           message: 'Missing Token'
         });
     } else {
-      jwt.verify(token, process.env.JWTKEY, (err, user) => {
+      jwt.verify(token, process.env.JWTKEY, (err, decoded) => {
         if (err) {
           if (err.message.includes('signature')) {
             res.status(403)
@@ -30,7 +30,8 @@ export default {
               });
           }
         }
-        // req.user = user;
+        req.user = decoded.user;
+
         next();
       });
     }

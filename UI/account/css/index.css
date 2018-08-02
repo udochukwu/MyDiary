@@ -213,6 +213,16 @@ a{text-decoration: none;}
 	width:100px;
 	border-radius: 50%;
 }
+footer{
+    border-top:1px solid rgba(97, 95, 95, 0.31);
+    width:100%;
+    font-weight:bold;
+}
+footer div{
+    flex: 80%;
+    max-width: 80%;
+    color:#51464E;
+}
 @-webkit-keyframes slideFromLeft {
 	from {left: -500px; opacity: 0}
 	to {left: 0; opacity: 1}

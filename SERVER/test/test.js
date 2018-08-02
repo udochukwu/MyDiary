@@ -2,7 +2,7 @@ import chaiHttp from 'chai-http';
 import chai, { expect } from 'chai';
 import app from '../app';
 
-let tk = '';
+// let tk = '';
 chai.use(chaiHttp);
 
 const user = {
@@ -17,20 +17,20 @@ const newUser = {
   confirmPassword: 'player009'
 };
 
-before((done) => {
-  chai.request(app)
-    .post('/api/v1/auth/signup').send(user)
-    .end((err, res) => {
-      expect(res).to.have.status(201);
-    });
-  chai.request(app)
-    .post('/api/v1/auth/login').send(user)
-    .end((err, res) => {
-      tk = res.body.token;
-      expect(res).to.have.status(200);
-      done();
-    });
-});
+// before((done) => {
+//   chai.request(app)
+//     .post('/api/v1/auth/signup').send(user)
+//     .end((err, res) => {
+//       expect(res).to.have.status(201);
+//     });
+//   chai.request(app)
+//     .post('/api/v1/auth/login').send(user)
+//     .end((err, res) => {
+//       tk = res.body.token;
+//       expect(res).to.have.status(200);
+//       done();
+//     });
+// });
 
 describe('Create a new user', () => {
   it('Should add a new user to the database', (done) => {
@@ -97,7 +97,7 @@ describe('Sign in with wrong password', () => {
         password: 'wrongPassword',
       })
       .end((err, res) => {
-        expect(res).to.have.status(404);
+        expect(res).to.have.status(401);
         done();
       });
   });
@@ -134,7 +134,14 @@ describe('Sign in with an empty password', () => {
 describe('Get all diary entries for a specific user from database', () => {
   it('Should get user specific entries', (done) => {
     chai.request(app)
-      .get('/api/v1/entries/user/1')
+      .post('/api/v1/auth/login').send(user)
+      .end((err, res) => {
+        tk = res.body.token;
+        expect(res).to.have.status(200);
+        done();
+      });
+    chai.request(app)
+      .get('/api/v1/entries')
       .set('x-access-token', tk)
       .end((err, res) => {
         expect(res).to.have.status(200);
@@ -146,7 +153,7 @@ describe('Get all diary entries for a specific user from database', () => {
 describe('Send a request with a wrong token', () => {
   it('Should return with a 403 error', (done) => {
     chai.request(app)
-      .get('/api/v1/entries/user/1')
+      .get('/api/v1/entries')
       .set('x-access-token', 'Wrong Token')
       .end((err, res) => {
         expect(res).to.have.status(403);
@@ -176,7 +183,6 @@ describe('Create a New Entry', () => {
         entryTitle: 'This is a new Entry Title',
         entryContent: 'This is a new entry content',
         dateTime: 'In the future',
-        userId: 1
       })
       .set('x-access-token', tk)
       .end((err, res) => {
@@ -193,7 +199,6 @@ describe('Create a New Entry With an empty entry title', () => {
         entryTitle: '',
         entryContent: 'This is a new entry content',
         dateTime: 'In the future',
-        userId: 1
       })
       .set('x-access-token', tk)
       .end((err, res) => {
@@ -210,7 +215,6 @@ describe('Create a New Entry With an empty entry content', () => {
         entryTitle: 'This is a new entry title',
         entryContent: '',
         dateTime: 'In the future',
-        userId: 1
       })
       .set('x-access-token', tk)
       .end((err, res) => {

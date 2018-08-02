@@ -16,11 +16,11 @@ class UsersController {
         return res.json({ success: false, message: 'Could not get data', err });
       }
       const { rows, rowCount } = dbRes;
-      const user = rows[0];
-      const { userid } = rows[0];
       if (rowCount !== 1) {
         return res.status(401).json({ success: false, message: 'Incorrect Email or password', rows });
       }
+      const user = rows[0];
+      const { userid } = rows[0];
       const token = generateToken({ email, userid });
       res.status(200).json({
         success: true, message: 'User successfully Logged In', user, token

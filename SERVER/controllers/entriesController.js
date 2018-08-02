@@ -58,7 +58,7 @@ class EntriesController {
       if (err) {
         return res.json({ sucess: false, message: 'Could not update entry', err });
       }
-      return res.status(201).send({ success: true, message: 'Entry Was succesfully updated', dbRes });
+      return res.status(200).send({ success: true, message: 'Entry Was succesfully updated', dbRes });
     });
   }
 

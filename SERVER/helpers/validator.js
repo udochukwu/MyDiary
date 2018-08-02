@@ -89,7 +89,6 @@ export default {
     const errors = {};
     const { entryTitle, entryContent } = req.body;
     const userId = req.user.userid;
-    // console.log(user);
 
     if (entryTitle) {
       if (entryTitle === '') {
@@ -103,7 +102,6 @@ export default {
 
     if (entryContent) {
       req.body.entryContent = entryContent;
-      console.log(entryContent);
       if (entryContent === '') {
         errors.entryContent = 'Entry content Empty';
       }

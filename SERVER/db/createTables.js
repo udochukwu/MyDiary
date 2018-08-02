@@ -1,7 +1,6 @@
 
 import db from './dbConfig';
 
-// const dropTable = 'DROP TABLE IF EXISTS users CASCADE;';
 const createUserTable = `CREATE TABLE users(
     userId SERIAL PRIMARY KEY,
     email VARCHAR(40) UNIQUE NOT NULL,

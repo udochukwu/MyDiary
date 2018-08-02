@@ -10,34 +10,23 @@ const user = {
   password: 'player009',
   confirmPassword: 'player009'
 };
-const randNum = Math.floor((Math.random() * 999999) + 1);
-const newUser = {
-  email: `randomuser${randNum}@yahoo.com`,
-  password: 'player009',
-  confirmPassword: 'player009'
-};
-
-// before((done) => {
-//   chai.request(app)
-//     .post('/api/v1/auth/signup').send(user)
-//     .end((err, res) => {
-//       expect(res).to.have.status(201);
-//     });
-//   chai.request(app)
-//     .post('/api/v1/auth/login').send(user)
-//     .end((err, res) => {
-//       tk = res.body.token;
-//       expect(res).to.have.status(200);
-//       done();
-//     });
-// });
-
 describe('Create a new user', () => {
   it('Should add a new user to the database', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup').send(user)
       .end((err, res) => {
         expect(res).to.have.status(201);
+        done();
+      });
+  });
+});
+
+describe('Sign up with an already existing email', () => {
+  it('Should add a new user to the database', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup').send(user)
+      .end((err, res) => {
+        expect(res).to.have.status(409);
         done();
       });
   });
@@ -142,6 +131,22 @@ describe('Sign in with an empty password', () => {
   });
 });
 
+describe('Create a New Entry', () => {
+  it('Should add a new entry to the database', (done) => {
+    chai.request(app)
+      .post('/api/v1/entries').send({
+        entryTitle: 'This is a new Entry Title',
+        entryContent: 'This is a new entry content',
+        dateTime: 'In the future',
+      })
+      .set('x-access-token', tk)
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        done();
+      });
+  });
+});
+
 describe('Get all diary entries for a specific user from database', () => {
   it('Should get user specific entries', (done) => {
     chai.request(app)
@@ -149,7 +154,6 @@ describe('Get all diary entries for a specific user from database', () => {
       .end((err, res) => {
         tk = res.body.token;
         expect(res).to.have.status(200);
-        done();
       });
     chai.request(app)
       .get('/api/v1/entries')
@@ -160,18 +164,6 @@ describe('Get all diary entries for a specific user from database', () => {
       });
   });
 });
-
-// describe('Send a request with a wrong token', () => {
-//   it('Should return with a 403 error', (done) => {
-//     chai.request(app)
-//       .get('/api/v1/entries')
-//       .set('x-access-token', 'Wrong Token')
-//       .end((err, res) => {
-//         expect(res).to.have.status(403);
-//         done();
-//       });
-//   });
-// });
 
 
 describe('Get a specified entry from database', () => {
@@ -187,17 +179,27 @@ describe('Get a specified entry from database', () => {
   });
 });
 
-describe('Create a New Entry', () => {
-  it('Should add a new entry to the database', (done) => {
+describe('Make a request without defining x-access-token', () => {
+  it('Should Make a request without defining x-access-token', (done) => {
     chai.request(app)
-      .post('/api/v1/entries').send({
-        entryTitle: 'This is a new Entry Title',
-        entryContent: 'This is a new entry content',
-        dateTime: 'In the future',
-      })
+      .get('/api/v1/entries/1')
+      .set('no-access-token', tk)
+      .end((err, res) => {
+        expect(res).to.have.status(403);
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+});
+
+describe('Get a non-existing entry from database', () => {
+  it('Should return an error 404 ', (done) => {
+    chai.request(app)
+      .get('/api/v1/entries/12345')
       .set('x-access-token', tk)
       .end((err, res) => {
-        expect(res).to.have.status(201);
+        expect(res).to.have.status(404);
+        expect(res.body).to.be.an('object');
         done();
       });
   });
@@ -250,12 +252,35 @@ describe('Modify an Entry', () => {
   });
 });
 
+describe('Delete an Entry', () => {
+  it('Should Delete the entry', (done) => {
+    chai.request(app)
+      .delete('/api/v1/entries/1')
+      .set('x-access-token', tk)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        done();
+      });
+  });
+});
+
 describe('Get a non existing url/page', () => {
   it('Should return 404 for unknown routes', (done) => {
     chai.request(app)
       .get('/invalid/route')
       .end((err, res) => {
         expect(res).to.have.status(404);
+        done();
+      });
+  });
+});
+
+describe('Get to the homepage ', () => {
+  it('Should return 200 for homepage', (done) => {
+    chai.request(app)
+      .get('/')
+      .end((err, res) => {
+        expect(res).to.have.status(200);
         done();
       });
   });

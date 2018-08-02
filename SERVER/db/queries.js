@@ -6,11 +6,11 @@ const queryEntriesByEntryId = 'SELECT * FROM entries WHERE userId = $1 AND entry
 
 const insertIntoUsers = 'INSERT INTO users(email, password) values($1, $2) RETURNING *';
 
-const insertIntoEntries = 'INSERT INTO entries(userId, entryTitle, entryContent, dateTime) values($1, $2, $3, $4) RETURNING *';
+const insertIntoEntries = 'INSERT INTO entries(userId, entryTitle, entryContent) values($1, $2, $3) RETURNING *';
 
-const updateEntry = 'UPDATE entries SET entryTitle = $1, entryContent = $2 WHERE entryId = $3';
+const updateEntry = 'UPDATE entries SET entryTitle = $1, entryContent = $2 WHERE entryId = $3 AND userId = $4';
 
-const deleteEntryById = 'DELETE from entries where entryId = $1';
+const deleteEntry = 'DELETE from entries where entryId = $1 AND userId = $2';
 
 
 const Queries = {
@@ -20,7 +20,7 @@ const Queries = {
   insertIntoEntries,
   insertIntoUsers,
   updateEntry,
-  deleteEntryById
+  deleteEntry
 };
 
 export default Queries;

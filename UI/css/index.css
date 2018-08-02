@@ -17,7 +17,6 @@ nav .logo-div{
 	max-width: 30%;
 	font-family: 'Aldrich';font-size: 22px;
     color:#F4511E;
-    /* color:#fff;     */
     text-align:center;
 }
 nav .signup-signin-div{
@@ -25,15 +24,14 @@ nav .signup-signin-div{
 	max-width: 70%;
     font-family: 'Aldrich';
     color:#F4511E;    
-    /* color:#fff; */
     text-align:right;    
 }
 nav .signup-signin-div h4{
     margin-right:3rem;        
 }
 nav a {
-     color: inherit; 
-     text-decoration:none;
+    color: inherit; 
+    text-decoration:none;
 } 
 .section-1{
     margin-top:3rem;
@@ -96,6 +94,9 @@ nav a {
 }
 footer{
     border-top:1px solid rgba(97, 95, 95, 0.31);
+    /* position:absolute;
+    bottom:0; */
+    width:100%;
 }
 footer div{
     flex: 80%;

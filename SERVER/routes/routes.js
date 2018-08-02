@@ -11,15 +11,15 @@ const {
 } = EntriesController;
 const { login, register } = UsersController;
 const {
-  addUserToDb, getUser, getEntriesByUserId, getEntryById, addEntryToDb, modifyDbEntry
+  getEntriesByUserId, getEntryById, addEntryToDb, modifyDbEntry
 } = DbQueries;
 const { checkToken } = Authenticator;
 const { regValidation, loginValidation, entriesValidation } = Validator;
 
 const router = express.Router();
-router.post('/auth/signup', regValidation, addUserToDb, register);
-router.post('/auth/login', loginValidation, getUser, login);
-router.get('/entries/user/:userId', checkToken, getEntriesByUserId, fetchUserEntries);
+router.post('/auth/signup', regValidation, register);
+router.post('/auth/login', loginValidation, login);
+router.get('/entries/', checkToken, getEntriesByUserId, fetchUserEntries);
 router.get('/entries/:entryId', checkToken, getEntryById, fetchEntryById);
 router.post('/entries', checkToken, entriesValidation, addEntryToDb, createNewEntry);
 router.put('/entries/:entryId', checkToken, entriesValidation, modifyDbEntry, modifyEntry);

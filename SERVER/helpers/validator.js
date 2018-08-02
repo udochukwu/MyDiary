@@ -87,7 +87,9 @@ export default {
   // validate login inputs
   entriesValidation(req, res, next) {
     const errors = {};
-    const { entryTitle, entryContent, userId } = req.body;
+    const { entryTitle, entryContent } = req.body;
+    const userId = req.user.userid;
+    // console.log(user);
 
     if (entryTitle) {
       if (entryTitle === '') {
@@ -116,7 +118,7 @@ export default {
         errors.userId = 'Invalid UserID';
       }
     } else {
-      errors.entryContent = 'Entry content is not defined';
+      errors.entryContent = 'User ID is not defined';
     }
 
     const errorLength = Object.keys(errors).length;

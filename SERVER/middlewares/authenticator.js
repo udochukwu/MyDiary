@@ -16,7 +16,7 @@ export default {
           message: 'Missing Token'
         });
     } else {
-      jwt.verify(token, process.env.JWTKEY, (err, user) => {
+      jwt.verify(token, process.env.JWTKEY, (err, decoded) => {
         if (err) {
           if (err.message.includes('signature')) {
             res.status(403)
@@ -30,7 +30,9 @@ export default {
               });
           }
         }
-        // req.user = user;
+        // console.log(decoded);
+        req.user = decoded.user;
+
         next();
       });
     }

@@ -36,7 +36,7 @@ class DbQueries {
 
   // fetch entries by userID
   static getEntriesByUserId(req, res, next) {
-    db.query(`SELECT * FROM entries WHERE userId = ${req.params.userId}`, (err, dbRes) => {
+    db.query(`SELECT * FROM entries WHERE userId = ${req.user.userid}`, (err, dbRes) => {
       if (err) {
         return res.json({ message: 'Entries could not be fetched', err });
       }
@@ -47,7 +47,7 @@ class DbQueries {
 
   // fetch entry by entryID
   static getEntryById(req, res, next) {
-    db.query(`SELECT * FROM entries WHERE entryId = ${req.params.entryId}`, (err, dbRes) => {
+    db.query(`SELECT * FROM entries WHERE userId = ${req.user.userid} AND entryId = ${req.params.entryId}`, (err, dbRes) => {
       if (err) {
         return res.json({ message: 'Entries could not be fetched', err });
       }
@@ -59,7 +59,8 @@ class DbQueries {
   // add an entry to database
   static addEntryToDb(req, res, next) {
     const dateTime = new Date();
-    const { userId, entryTitle, entryContent } = req.body;
+    const { entryTitle, entryContent } = req.body;
+    const userId = req.user.userid;
     db.query('INSERT INTO entries(userId, entryTitle, entryContent, dateTime) values($1, $2, $3, $4) RETURNING *', [userId, entryTitle, entryContent, dateTime], (err, dbRes) => {
       if (err) {
         return res.json({ message: 'Could not post data', err });

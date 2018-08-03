@@ -17,7 +17,7 @@ class UsersController {
       }
       const { rows, rowCount } = dbRes;
       if (rowCount !== 1) {
-        return res.status(401).json({ success: false, message: 'Incorrect Email or password', rows });
+        return res.status(401).json({ success: false, message: 'Incorrect Email or password' });
       }
       const user = rows[0];
       const { userid } = rows[0];

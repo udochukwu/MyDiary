@@ -11,6 +11,8 @@ MyDiary is an online journal where users can pen down their thoughts and feeling
 * Users can get an entry by ID
 * Users can add new entry
 * Users can update an entry
+* Users can delete an entry
+
 
 # To Run :
 * Clone this repo : 
@@ -27,3 +29,6 @@ MyDiary is an online journal where users can pen down their thoughts and feeling
 * POST http://localhost:8000/api/v1/entries - to add a new entry
 
 * PUT http://localhost:8000/api/v1/entries/1  - to modify an entry with ID of 1
+
+* DELETE http://localhost:8000/api/v1/entries/1  - to delete an entry with ID of 1
+

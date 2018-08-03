@@ -37,11 +37,11 @@ class EntriesController {
   }
 
   static createNewEntry(req, res) {
-    let { entryTitle, entryContent } = req.body;
-    entryTitle = entryTitle.replace(/\s+/g, ' ').trim();
-    entryContent = entryContent.replace(/\s+/g, ' ').trim();
+    const { entryTitle, entryContent } = req.body;
+    const finalTitle = entryTitle.replace(/\s+/g, ' ').trim();
+    const finalContent = entryContent.replace(/\s+/g, ' ').trim();
     const userId = req.user.userid;
-    db.query(insertIntoEntries, [userId, entryTitle, entryContent], (err, dbRes) => {
+    db.query(insertIntoEntries, [userId, finalTitle, finalContent], (err, dbRes) => {
       if (err) {
         return res.json({ success: false, message: 'Could not post data', err });
       }

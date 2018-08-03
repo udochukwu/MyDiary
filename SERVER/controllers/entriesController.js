@@ -14,7 +14,7 @@ class EntriesController {
       }
       const { rows, rowCount } = dbRes;
       if (rowCount === 0) {
-        return res.status(200).json({ success: false, message: 'No Entries for user', rows });
+        return res.status(200).json({ success: true, message: 'No Entries for user', rows });
       }
       return res.status(200).json({ success: true, message: 'Entries successfully Loaded', entries: rows });
     });
@@ -54,22 +54,22 @@ class EntriesController {
     const userId = req.user.userid;
     const { entryId } = req.params;
 
-    db.query(updateEntry, [entryTitle, entryContent, entryId, userId], (err, dbRes) => {
+    db.query(updateEntry, [entryTitle, entryContent, entryId, userId], (err) => {
       if (err) {
         return res.json({ sucess: false, message: 'Could not update entry', err });
       }
-      return res.status(200).send({ success: true, message: 'Entry Was succesfully updated', dbRes });
+      return res.status(200).send({ success: true, message: 'Entry Was succesfully updated' });
     });
   }
 
   static deleteEntry(req, res) {
     const userId = req.user.userid;
     const { entryId } = req.params;
-    db.query(deleteEntry, [entryId, userId], (err, dbRes) => {
+    db.query(deleteEntry, [entryId, userId], (err) => {
       if (err) {
         return res.json({ sucess: false, message: 'Could not Delete entry', err });
       }
-      return res.status(200).send({ success: true, message: 'Entry Was succesfully deleted', dbRes });
+      return res.status(200).send({ success: true, message: 'Entry Was succesfully deleted' });
     });
   }
 }

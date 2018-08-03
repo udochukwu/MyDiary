@@ -9,7 +9,12 @@ const http = require('http');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/api/v1', Router);
+// app.use('/api/v1', Router);
+app.use('/api/v1', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+  next();
+}, Router);
 
 app.get('/', (req, res) => {
   res.status(200)

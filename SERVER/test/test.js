@@ -246,7 +246,7 @@ describe('Modify an Entry', () => {
       })
       .set('x-access-token', tk)
       .end((err, res) => {
-        expect(res).to.have.status(201);
+        expect(res).to.have.status(200);
         done();
       });
   });

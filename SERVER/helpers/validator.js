@@ -15,7 +15,7 @@ export default {
         errors.email = 'Email too long';
       }
     } else {
-      errors.email = 'Email is not defimed';
+      errors.email = 'Email is not defined';
     }
 
     if (password) {
@@ -89,7 +89,6 @@ export default {
     const errors = {};
     const { entryTitle, entryContent } = req.body;
     const userId = req.user.userid;
-    // console.log(user);
 
     if (entryTitle) {
       if (entryTitle === '') {
@@ -103,7 +102,6 @@ export default {
 
     if (entryContent) {
       req.body.entryContent = entryContent;
-      console.log(entryContent);
       if (entryContent === '') {
         errors.entryContent = 'Entry content Empty';
       }

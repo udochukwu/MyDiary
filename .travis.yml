@@ -1,33 +1,27 @@
 language: node_js
 node_js:
-- "stable"
+  - "stable"
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database MyDiary;' -U postgres
+ 
+script:
+  - npm run test
 notifications:
   email: false
+
 env:
-global:
-  - export NODE_ENV=test
-before_script:
-  - npm install
-  - npm i nyc --save-dev
-script:
-  - npm test
+  global:
+    - export NODE_ENV=test
+
+
 after_success:
   - npm run coverage
   - npm run coveralls
 
-
-
-
-
-
-
-
 cache:
   directories:
     - node_modules
-
-before_script:
-  - npm i nyc --save-dev
-
-script:
-  - npm run test

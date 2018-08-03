@@ -15,7 +15,7 @@ export default {
         errors.email = 'Email too long';
       }
     } else {
-      errors.email = 'Email is not defimed';
+      errors.email = 'Email is not defined';
     }
 
     if (password) {

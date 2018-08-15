@@ -60,9 +60,9 @@ export default {
     // https://www.w3resource.com/javascript/form/email-validation.php
     if (email) {
       if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-        errors.email = 'invalid email';
+        errors.email = 'Invalid email';
       } else if (email === '') {
-        errors.email = 'invalid email';
+        errors.email = 'Invalid email';
       }
     } else {
       errors.email = 'Email is not defimed';

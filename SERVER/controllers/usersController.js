@@ -17,7 +17,9 @@ class UsersController {
       }
       const { rows, rowCount } = dbRes;
       if (rowCount !== 1) {
-        return res.status(401).json({ success: false, message: 'Incorrect Email or password' });
+        const errors = {};
+        errors.email = 'Incorrect Email or password';
+        return res.status(401).json({ success: false, errors });
       }
       const { userid } = rows[0];
       const token = generateToken({ email, userid });
@@ -36,7 +38,7 @@ class UsersController {
         }
         const errors = {};
         errors.email = 'Email Address Already Exists on our database';
-        return res.status(409).json({ success: false, message: 'Email Address Already Exists on our database', errors });
+        return res.status(409).json({ success: false, errors });
       }
       const { rows } = dbRes;
       const { userid } = rows[0];

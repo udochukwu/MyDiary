@@ -21,7 +21,9 @@ export default {
     if (password) {
       if (password === '') {
         errors.password = 'Password Empty';
-      } else if (password.length > 15) {
+      } else if (password.length < 8) {
+        errors.password = 'password too Sort';
+      } else if (password.length > 20) {
         errors.password = 'password too long';
       } else if (/\s/.test(password)) {
         errors.password = 'space not allowed on password';

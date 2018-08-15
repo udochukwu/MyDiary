@@ -34,7 +34,9 @@ class UsersController {
         if (err.code !== '23505') {
           return res.json({ message: 'Could not post data', err });
         }
-        return res.status(409).json({ success: false, message: 'Email Address Already Exists on our database' });
+        const errors = {};
+        errors.email = 'Email Address Already Exists on our database';
+        return res.status(409).json({ success: false, message: 'Email Address Already Exists on our database', errors });
       }
       const { rows } = dbRes;
       const { userid } = rows[0];

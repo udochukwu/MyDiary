@@ -44,12 +44,12 @@
 	color:#F4511E;
 }
 .cls {
-	color: #fff;
+	color: #151513;
 	float: right;
 	font-size: 40px;
     font-weight: bold;
     position:absolute;
-    right:-50px;
+    right:30px;
     top:0px;
     border-radius: 8px;
 }
@@ -107,7 +107,7 @@
 	width:90%;
 }
 .cls {
-	color: #aaaaaa;
+	color: #151513;
 	float: right;
 	font-size: 28px;
 	font-weight: bold;

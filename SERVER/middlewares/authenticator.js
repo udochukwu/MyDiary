@@ -3,7 +3,7 @@ import 'dotenv/config';
 
 export default {
   generateToken(user) {
-    const token = jwt.sign({ user }, process.env.JWTKEY, { expiresIn: '1200s' });
+    const token = jwt.sign({ user }, process.env.JWTKEY, { expiresIn: '2000s' });
     return token;
   },
 
@@ -13,7 +13,7 @@ export default {
       res.status(403)
         .json({
           success: false,
-          message: 'Missing Token'
+          error: 'Missing Token'
         });
     } else {
       jwt.verify(token, process.env.JWTKEY, (err, decoded) => {
@@ -21,12 +21,14 @@ export default {
           if (err.message.includes('signature')) {
             res.status(403)
               .json({
-                message: 'Invalid token supplied',
+                success: false,
+                error: 'Invalid token supplied',
               });
           } else {
             res.status(403)
               .json({
-                message: err,
+                success: false,
+                error: err,
               });
           }
         }

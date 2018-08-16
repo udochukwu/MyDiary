@@ -7,16 +7,16 @@ const {
 
 class EntriesController {
   static fetchUserEntries(req, res) {
-    const userId = req.user.userid;
-    db.query(queryEntriesByUserId, [userId], (err, dbRes) => {
+    const { userid, email } = req.user;
+    db.query(queryEntriesByUserId, [userid], (err, dbRes) => {
       if (err) {
         return res.json({ sucess: false, message: 'Entries could not be fetched', err });
       }
       const { rows, rowCount } = dbRes;
-      if (rowCount === 0) {
-        return res.status(200).json({ success: true, message: 'No Entries for user', rows });
-      }
-      return res.status(200).json({ success: true, message: 'Entries successfully Loaded', entries: rows });
+
+      return res.status(200).json({
+        success: true, entries: rows, rowCount, userid, email
+      });
     });
   }
 

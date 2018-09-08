@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('*', (req, res) => res.status(404).send({
-  message: 'Page Not Found',
+  message: 'Page Not Found.',
 }));
 
 const port = parseInt(process.env.PORT, 10) || 8000;

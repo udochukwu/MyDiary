@@ -32,10 +32,13 @@ class UsersController {
     const { email, password } = req.body;
     db.query(insertIntoUsers, [email, password], (err, dbRes) => {
       if (err) {
+        const errors = {};
         if (err.code !== '23505') {
-          return res.json({ message: 'Could not post data', err });
+          errors.unknown = 'Cannot signup at the moment';
+          return res.json({ message: 'Could not post data', err, errors });
         }
-        return res.status(409).json({ success: false, message: 'Email Address Already Exists on our database' });
+        errors.email = 'Email Address Already Exists on our database';
+        return res.status(409).json({ success: false, message: 'Email Address Already Exists on our database', errors });
       }
       const { rows } = dbRes;
       const user = rows[0];

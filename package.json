@@ -4,7 +4,8 @@
   "description": "MyDiary is an online journal where users can pen down their thoughts and feelings.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node SERVER/app.js",
+    "start": "node build/app.js",
+    "postinstall": "babel server -d build",
     "dev": "nodemon --exec babel-node SERVER/app.js",
     "test:dev": " mocha dist/server/test/*.js --exit  --require babel-register --reporter spec",
     "test": " npm run dropTables && npm run createTables && nyc --reporter=html --reporter=text mocha SERVER/test/*.js --exit  --require babel-register ",

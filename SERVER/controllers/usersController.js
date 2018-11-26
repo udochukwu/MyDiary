@@ -12,12 +12,15 @@ class UsersController {
   static login(req, res) {
     const { email, password } = req.body;
     db.query(queryUsersByEmail, [email, password], (err, dbRes) => {
+      const errors = {};
       if (err) {
-        return res.json({ success: false, message: 'Could not get data', err });
+        errors.unknown = 'Cannot signup at the moment';
+        return res.json({ success: false, err, errors });
       }
       const { rows, rowCount } = dbRes;
       if (rowCount !== 1) {
-        return res.status(401).json({ success: false, message: 'Incorrect Email or password' });
+        errors.email = 'Incorrect Email or password';
+        return res.status(401).json({ success: false, errors });
       }
       const user = rows[0];
       const { userid } = rows[0];

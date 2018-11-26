@@ -30,17 +30,6 @@ export default {
       errors.password = 'Password muust be defined';
     }
 
-    if (confirmPassword) {
-      if (confirmPassword === '') {
-        errors.confirmPassword = 'Please Retype Password';
-      } else if (password !== confirmPassword) {
-        errors.confirmPassword = 'Password does not match';
-      }
-    } else {
-      errors.confirmPassword = 'confirm Password is missing';
-    }
-
-
     // check if there where any errors
     const errorLength = Object.keys(errors).length;
     if (errorLength === 0) {

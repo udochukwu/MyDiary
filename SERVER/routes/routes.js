@@ -6,7 +6,7 @@ import Validator from '../helpers/validator';
 
 
 const {
-  fetchUserEntries, fetchEntryById, createNewEntry, modifyEntry, deleteEntry
+  fetchUserEntries,fetchEntryById, createNewEntry, modifyEntry, deleteEntry
 } = EntriesController;
 const { login, register } = UsersController;
 const { checkToken } = Authenticator;

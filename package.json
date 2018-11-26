@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "MyDiary is an online journal where users can pen down their thoughts and feelings.",
   "main": "index.js",
+  "engines": {
+    "node": "10.x"
+  },
   "scripts": {
     "start": "node build/app.js",
     "postinstall": "babel server -d build",

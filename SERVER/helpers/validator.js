@@ -7,7 +7,7 @@ export default {
     const { email, password, confirmPassword } = req.body;
     // https://www.w3resource.com/javascript/form/email-validation.php
     if (email) {
-      if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,6})+$/.test(email)) {
         errors.email = 'invalid email';
       } else if (email === '') {
         errors.email = 'invalid email';
@@ -27,7 +27,7 @@ export default {
         errors.password = 'space not allowed on password';
       }
     } else {
-      errors.password = 'Password is not defined';
+      errors.password = 'Password muust be defined';
     }
 
     if (confirmPassword) {
@@ -37,7 +37,7 @@ export default {
         errors.confirmPassword = 'Password does not match';
       }
     } else {
-      errors.confirmPassword = 'Undefined field confirmPassword';
+      errors.confirmPassword = 'confirm Password is missing';
     }
 
 
@@ -93,7 +93,7 @@ export default {
     if (entryTitle) {
       if (entryTitle === '') {
         errors.entryTitle = 'Entry title Empty';
-      } else if (entryTitle.length > 30) {
+      } else if (entryTitle.length > 100) {
         errors.entryTitle = 'Entry title too long';
       }
     } else {

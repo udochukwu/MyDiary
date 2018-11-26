@@ -11,7 +11,7 @@ const createEntriesTable = `CREATE TABLE entries(
       entryId SERIAL,
       userId INT NOT NULL 
       REFERENCES users(userId) ON DELETE CASCADE,
-      entryTitle VARCHAR(40) NOT NULL,
+      entryTitle VARCHAR(100) NOT NULL,
       entryContent TEXT NOT NULL,
       dateTime TIMESTAMP NOT NULL default current_timestamp,
       PRIMARY KEY (userId,entryId))`;

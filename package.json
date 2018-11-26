@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node SERVER/app.js",
-    "start:dev": "nodemon --exec babel-node SERVER/app.js",
+    "dev": "nodemon --exec babel-node SERVER/app.js",
     "test:dev": " mocha dist/server/test/*.js --exit  --require babel-register --reporter spec",
     "test": " npm run dropTables && npm run createTables && nyc --reporter=html --reporter=text mocha SERVER/test/*.js --exit  --require babel-register ",
     "coverage": "nyc report  --reporter=html  --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "createTables": "babel-node SERVER/db/createTables.js",
-    "dropTables": "babel-node SERVER/db/dropTables.js"
+    "dropTables": "babel-node SERVER/db/dropTables.js",
+    "resetTables": " npm run dropTables && npm run createTables "
   },
   "repository": {
     "type": "git",

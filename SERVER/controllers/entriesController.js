@@ -12,10 +12,7 @@ class EntriesController {
       if (err) {
         return res.json({ sucess: false, message: 'Entries could not be fetched', err });
       }
-      const { rows, rowCount } = dbRes;
-      if (rowCount === 0) {
-        return res.status(200).json({ success: true, message: 'No Entries for user', rows });
-      }
+      const { rows } = dbRes;
       return res.status(200).json({ success: true, message: 'Entries successfully Loaded', entries: rows });
     });
   }
@@ -32,7 +29,7 @@ class EntriesController {
       if (rowCount === 0) {
         return res.status(404).json({ success: false, message: 'Entry not found', rows });
       }
-      return res.status(200).json({ success: true, message: 'Entry successfully Loaded', entries: rows });
+      return res.status(200).json({ success: true, message: 'Entry successfully Loaded', entry: rows[0] });
     });
   }
 

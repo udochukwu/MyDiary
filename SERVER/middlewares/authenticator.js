@@ -3,7 +3,7 @@ import 'dotenv/config';
 
 export default {
   generateToken(user) {
-    const token = jwt.sign({ user }, process.env.JWTKEY, { expiresIn: '1200s' });
+    const token = jwt.sign({ user }, process.env.JWTKEY, { expiresIn: '48h' });
     return token;
   },
 
